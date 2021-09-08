@@ -35,7 +35,7 @@ function main_handler($event, $context)
                 $describe .= "### 转码ID: " . $k['JobId'] . "\n\n";
                 $describe .= "转码" . ($k['Status'] == "success" ? "成功" : "失败") . "\n";
                 if ($k['Status'] == "success") {
-                    $describe .= "- 转码时间：" . ((float)$k['Duration'] / 3600) . "小时\n";
+                    $describe .= "- 转码时间：" . (intval((float)$body['Duration'] / 36+0.5)/100) . "小时\n";
                     $describe .= "- 画质: " . AliDuration[$k['Definition']] . "\n";
                 } else {
                     $describe .= "- 错误码: " . $k['ErrorCode'] . "\n";
@@ -51,7 +51,7 @@ function main_handler($event, $context)
             $describe .= "视频ID: " . $body['VideoId'] . " \n";
             $describe .= "转码ID: " . $body['JobId'] . " \n\n";
             if (isSuccess) {
-                $describe .= "- 转码时间：" . ((float)$body['Duration'] / 3600) . "小时 \n";
+                $describe .= "- 转码时间：" . (intval((float)$body['Duration'] / 36+0.5)/100) . "小时 \n";
                 $describe .= "- 画质: " . AliDuration[$body['Definition']] . " \n";
             } else {
                 $describe .= "- 错误码: " . $body['ErrorCode'] . " \n";
